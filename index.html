@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link rel="stylesheet" href="css/notes.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script id="notes-template" type="text/x-handlebars-template">
+        {{#each this}}
+        <li><div class="date">{{this.date}}</div>
+            <h3>{{this.title}}</h3>
+            <div class="importance">{{this.importance}}</div>
+            <div class="desc">{{this.desc}}</div>
+            <button onclick="editNote({{this.id}})">Edit</button>)
+        </li>
+        {{/each}}
+    </script>
+    <script src="js/notes.js"></script>
+</head>
+<body>
+<div class="notes">
+    <nav>
+        <button id="newnote">Create new Note</button>
+        <select id="selectstyle">
+            <option value="bw">Black-and-white Style</option>
+            <option value="pastel">Pastel color Style</option>
+            <option value="color">Vivid color Style</option>
+        </select>
+        <div>
+            <input type="radio" name="orderby" value="due" onclick="renderNotesList()">by finish date
+            <input type="radio" name="orderby" value="created" onclick="renderNotesList()">by creation date
+            <input type="radio" name="orderby" value="importance" onclick="renderNotesList()" checked>by importance
+        </div>
+        <input id="showfinished" type="checkbox" onclick="renderNotesList()"> Show finished
+    </nav>
+    <section>
+        <ul id="noteslist"></ul>
+    </section>
+</div>
+
+</body>
+</html>
