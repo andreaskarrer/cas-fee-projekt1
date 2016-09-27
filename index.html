@@ -28,11 +28,11 @@
             <option value="color">Vivid color Style</option>
         </select>
         <div>
-            <input type="radio" name="orderby" value="due" onclick="renderNotesList()">by finish date
-            <input type="radio" name="orderby" value="created" onclick="renderNotesList()">by creation date
-            <input type="radio" name="orderby" value="importance" onclick="renderNotesList()" checked>by importance
+            <span><input type="radio" name="orderby" id="r1" value="due"><label for="r1">by finish date</label></span>
+            <span><input type="radio" name="orderby" id="r2" value="created" checked><label for="r2">by creation date</label></span>
+            <span><input type="radio" name="orderby" id="r3" value="importance"><label for="r3">by importance</label></span>
         </div>
-        <input id="showfinished" type="checkbox" onclick="renderNotesList()"> Show finished
+        <span><input type="checkbox" name="showfinished" id="showfinished"><label for="showfinished">Show finished</label></span>
     </nav>
     <section>
         <ul id="noteslist"></ul>

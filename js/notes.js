@@ -37,41 +37,18 @@ var notes =
     }];
 
 
-function byDueDate(s1, s2) {
-    return s1.due < s2.due;
-}
-function byCreationDate(s1, s2) {
-    return s1.created < s2.created;
-}
-function byImportance(s1, s2) {
-    return s1.importance - s2.importance;
-}
-
-// function findSong(id) {
-//     for (var i = 0; i < songs.length; i++) {
-//         if (songs[i].id == id) {
-//             return songs[i];
-//         }
-//     }
-//     return {};
-// }
-// function rateSong (songId, delta) {
-//     var song = findSong(songId);
-//     song.rating += delta;
-//     renderSongs();
-// }
-
 var createNotesList = Handlebars.compile(document.getElementById("notes-template").innerText);
+
 function renderNotesList () {
     // make a comparator function according to the orderby radio buttons
     var orderby = $("input:radio[name ='orderby']:checked").val();
-
     var comparator;
     switch (orderby) {
         case "due":        comparator = function(a, b) { return a.due < b.due; }; break;
         case "created":    comparator = function(a, b) { return a.created < b.created; }; break;
         case "importance": comparator = function(a, b) { return b.importance - a.importance; }; break;
     }
+
     // make a filter function according to the "Show finished" checkbox
     var today = new Date().toJSON().slice(0,10); // todays date in format yyyy-mm-dd
     var showFinished = function(a) { return a.due > today; }
@@ -79,11 +56,16 @@ function renderNotesList () {
         showFinished = function(a) { return true; }
     }
 
-    for (var i=0; i<notes.size;i++) {
-        console.log(notes[i].id + " = " + notes[i].title)
-    }
+    // notes list is first filtered and then sorted
     $("#noteslist").html(createNotesList(notes.filter(showFinished).sort(comparator)));
 }
+
+function navEventHandler (event) {
+    renderNotesList();
+}
+
 $(function() {
     renderNotesList();
+
+    $("nav").on("click", navEventHandler);
 });

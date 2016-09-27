@@ -1,5 +1,26 @@
+body {
+    font-family: "Helvetica Neue LT", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+}
 .notes {
+    border: 1px solid black;
     display:flex;
     flex-wrap: wrap;
 }
 
+/* use radio and checkboxes, but do not show the circles and squares, rather the labels */
+nav input[type=radio],
+nav input[type=checkbox] {
+    visibility: hidden;
+    position:absolute;
+}
+
+nav input[type=radio]:checked ~ label,
+nav input[type=checkbox]:checked ~ label {
+    border-color: blue
+}
+
+
+nav label { border-bottom: 3px solid #bbb }
+nav span:hover { background-color: #eee}
