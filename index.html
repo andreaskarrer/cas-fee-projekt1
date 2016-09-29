@@ -8,11 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each this}}
-        <li><div class="date">{{this.date}}</div>
-            <h3>{{this.title}}</h3>
+        <li><div class="due">{{this.due}}</div>
+            <div class="title">{{this.title}}</div>
+            <div class="created">{{this.created}}</div>
             <div class="importance">{{this.importance}}</div>
             <div class="desc">{{this.desc}}</div>
-            <button onclick="editNote({{this.id}})">Edit</button>)
+            <button onclick="editNote({{this.id}})">Edit</button>
         </li>
         {{/each}}
     </script>

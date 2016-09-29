@@ -15,7 +15,7 @@ var notes =
         "due": "2016-09-25"
     }, {
         "id": 3,
-        "title": "Steuereklärung",
+        "title": "Steuererklärung",
         "desc": "Fristerstreckung bis 30. Nov",
         "importance": 5,
         "created": "2016-09-25",

@@ -1,13 +1,52 @@
 body {
     font-family: "Helvetica Neue LT", Arial, sans-serif;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 1rem;
+    width: 800px;
+    line-height: 1.5;
 }
 .notes {
-    border: 1px solid black;
-    display:flex;
-    flex-wrap: wrap;
+    position: relative;
+    display: block;
+    margin: .75rem;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: .25rem;
+    wisplay:flex;
 }
+section, nav  {
+    position: relative;
+    display: block;
+    margin-bottom: .75rem;
+    padding: .75rem;
+    background-color: #eee;
+    border: 1px solid #aaa;
+    border-radius: .25rem;
+    width:100%;
+    sisplay:flex;
+    slex-wrap: wrap;
+}
+
+section ul {
+    padding: 0;
+    margin: 0;
+}
+
+section ul li {
+    position: relative;
+    display: block;
+    margin-bottom: .75rem;
+    padding: .75rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+    display:flex;
+    justify-content: space-between;
+}
+
+section ul li div {
+  padding-right: .75rem;
+}
+
 
 /* use radio and checkboxes, but do not show the circles and squares, rather the labels */
 nav input[type=radio],
@@ -18,9 +57,8 @@ nav input[type=checkbox] {
 
 nav input[type=radio]:checked ~ label,
 nav input[type=checkbox]:checked ~ label {
-    border-color: blue
+    border-color: black;
 }
 
-
-nav label { border-bottom: 3px solid #bbb }
-nav span:hover { background-color: #eee}
+nav label { border-bottom: 2px solid #bbb }
+nav span:hover { background-color: #ddd}
