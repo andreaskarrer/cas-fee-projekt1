@@ -1,55 +1,22 @@
 'use strict';
 
-var notes =
-    [{
-        "id": 1,
-        "title": "Blumen giessen",
-        "desc": "Blumen auf dem Balkon und hinter dem Haus giessen.",
-        "importance": 1,
-        "created": "2016-09-25",
-        "due": "2016-12-31"
-    }, {
-        "id": 2,
-        "title": "Rechnungen zahlen",
-        "desc": "Miete schon 2x gemahnt!",
-        "importance": 4,
-        "created": "2016-09-20",
-        "due": "2016-09-25"
-    }, {
-        "id": 3,
-        "title": "Steuererklärung",
-        "desc": "Fristerstreckung bis 30. Nov",
-        "importance": 5,
-        "created": "2016-09-25",
-        "due": "2016-11-30"
-    }, {
-        "id": 4,
-        "title": "Kino",
-        "desc": "Scharf beobachtete Züge, Jiří Menzel, Filmpodium.",
-        "importance": 4,
-        "created": "2016-09-25",
-        "due": "2016-10-07"
-    }, {
-        "id": 5,
-        "title": "USB-Stick mitnehmen",
-        "desc": "Klio Buchhandlung Katalog dump, > Newsletter",
-        "importance": 2,
-        "created": "2016-09-25",
-        "due": "2016-11-24"
-    }];
+var notes = [];
 
+var createNotesList = Handlebars.compile($("#notes-template").text());
 
-var createNotesList = Handlebars.compile(document.getElementById("notes-template").innerText);
-
-function renderNotesList () {
-    // make a comparator function according to the orderby radio buttons
-    var orderby = $("input:radio[name ='orderby']:checked").val();
+function getComparator(orderby) {
     var comparator;
     switch (orderby) {
         case "due":        comparator = (a, b) => (a.due < b.due); break;
         case "created":    comparator = (a, b) => (a.created < b.created); break;
         case "importance": comparator = (a, b) => (b.importance - a.importance); break;
     }
+    return comparator;
+}
+
+function renderNotesList () {
+    // make a comparator function according to the orderby radio buttons
+    var orderby = $("input:radio[name ='orderby']:checked").val();
 
     // make a filter function according to the "Show finished" checkbox
     var today = new Date().toJSON().slice(0,10); // today's date in format yyyy-mm-dd
@@ -59,15 +26,27 @@ function renderNotesList () {
     }
 
     // notes list is first filtered and then sorted
-    $("#noteslist").html(createNotesList(notes.filter(showFinished).sort(comparator)));
+    $("#noteslist").html(createNotesList(notes.filter(showFinished).sort(getComparator(orderby))));
+}
+
+function editNote(id) {
+    // store the id of the note to be edited in local storage and switch to the edit page
+    localStorage.setItem("editNote", ""+id);
+    window.location = "editNote.html";
 }
 
 function navEventHandler (event) {
+    console.log("ev targ id:"+event.target.id);
+    if (event.target.id == "newnote") {
+        editNote(0);
+    }
     renderNotesList();
 }
 
 $(function() {
+    notes = notesLocalStorage.getAll();
     renderNotesList();
 
+    //$("newnote").on("click", editNote);
     $("nav").on("click", navEventHandler);
 });
