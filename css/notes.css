@@ -1,19 +1,18 @@
 body {
     font-family: "Helvetica Neue LT", Arial, sans-serif;
     font-size: 1rem;
-    width: 800px;
+    width: 94%;
     line-height: 1.5;
 }
-.notes {
+#notes, #editNote {
     position: relative;
     display: block;
     margin: .75rem;
     background-color: #fff;
     border: 1px solid #eee;
     border-radius: .25rem;
-    wisplay:flex;
 }
-section, nav  {
+section, nav {
     position: relative;
     display: block;
     margin-bottom: .75rem;
@@ -21,30 +20,70 @@ section, nav  {
     background-color: #eee;
     border: 1px solid #aaa;
     border-radius: .25rem;
-    width:100%;
-    sisplay:flex;
-    slex-wrap: wrap;
+    width: 100%;
+}
+
+.navrow {
+    line-height: 2.5;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 section ul {
     padding: 0;
     margin: 0;
+    list-style: none;
 }
 
 section ul li {
     position: relative;
-    display: block;
     margin-bottom: .75rem;
     padding: .75rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: .25rem;
-    display:flex;
-    justify-content: space-between;
+    xdisplay:flex;
+    xjustify-content: space-between;
 }
 
 section ul li div {
-  padding-right: .75rem;
+    padding-right: .75rem;
+}
+
+.row {
+    line-height: 2.5;
+    display: flex;
+}
+
+.due, .created {
+    width: 6rem;
+}
+
+.title {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.importance {
+    width: 10rem;
+}
+.desc {
+    min-width: 300px;
+    flex-grow: 1;
+    border: dotted black 1px;
+    padding: 3px 5px;
+}
+
+/* editNote page */
+#editNote label {
+    width:200px;
+}
+#editNote input.err {
+    border-color: red;
+}
+#editNote span.err {
+    color: red; display: none;
 }
 
 
