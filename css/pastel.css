@@ -1,0 +1,22 @@
+body {
+    background-color: #e0e8ff;
+}
+
+section, nav, #editNote {
+    background-color: #acf;
+    border: 2px solid #8af;
+}
+
+#noteslist li {
+    background-color: #efe;
+}
+
+#noteslist .desc,
+#editNote input[type=text],
+#editNote textarea{
+    background-color: #ffe8e8;
+}
+
+
+nav label { border-bottom: 3px solid #8af }
+nav label:hover { background-color: #fee}

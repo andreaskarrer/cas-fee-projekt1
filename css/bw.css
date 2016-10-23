@@ -1,0 +1,15 @@
+
+section, nav, #editNote {
+    background-color: #eee;
+    border: 1px solid #aaa;
+}
+
+#noteslist .desc,
+#editNote input[type=text],
+#editNote textarea{
+    background-color: #fff;
+}
+
+
+nav label { border-bottom: 3px solid #bbb }
+nav label:hover { background-color: #ddd }

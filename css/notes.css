@@ -4,25 +4,21 @@ body {
     width: 94%;
     line-height: 1.5;
 }
-#notes, #editNote {
-    position: relative;
+
+#notes {
     display: block;
     margin: .75rem;
-    background-color: #fff;
-    border: 1px solid #eee;
     border-radius: .25rem;
 }
-section, nav {
-    position: relative;
+section, nav, #editNote {
     display: block;
     margin-bottom: .75rem;
     padding: .75rem;
-    background-color: #eee;
-    border: 1px solid #aaa;
     border-radius: .25rem;
     width: 100%;
 }
 
+/* the top area is for navigation */
 .navrow {
     line-height: 2.5;
     display: flex;
@@ -30,64 +26,7 @@ section, nav {
     flex-wrap: wrap;
 }
 
-section ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-section ul li {
-    position: relative;
-    margin-bottom: .75rem;
-    padding: .75rem;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: .25rem;
-    xdisplay:flex;
-    xjustify-content: space-between;
-}
-
-section ul li div {
-    padding-right: .75rem;
-}
-
-.row {
-    line-height: 2.5;
-    display: flex;
-}
-
-.due, .created {
-    width: 6rem;
-}
-
-.title {
-    font-weight: bold;
-    flex-grow: 1;
-}
-
-.importance {
-    width: 10rem;
-}
-.desc {
-    min-width: 300px;
-    flex-grow: 1;
-    border: dotted black 1px;
-    padding: 3px 5px;
-}
-
-/* editNote page */
-#editNote label {
-    width:200px;
-}
-#editNote input.err {
-    border-color: red;
-}
-#editNote span.err {
-    color: red; display: none;
-}
-
-
-/* use radio and checkboxes, but do not show the circles and squares, rather the labels */
+/* use radio and checkboxes, but do not show the boxes etc */
 nav input[type=radio],
 nav input[type=checkbox] {
     visibility: hidden;
@@ -99,5 +38,76 @@ nav input[type=checkbox]:checked ~ label {
     border-color: black;
 }
 
-nav label { border-bottom: 2px solid #bbb }
-nav span:hover { background-color: #ddd}
+/* the list of notes */
+#noteslist {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#noteslist li {
+    position: relative;
+    margin-bottom: .75rem;
+    padding: .75rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+}
+
+#noteslist li div {
+    padding-right: .75rem;
+}
+
+#noteslist .row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#noteslist .datefield {
+    min-width: 6rem;
+}
+
+#noteslist .title {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+#noteslist .importance {
+    width: 10rem;
+    margin-right: 10px;
+}
+
+#noteslist .desc {
+    min-width: 300px;
+    flex-grow: 1;
+    height: 6rem;
+    border: dotted black 1px;
+    padding: 3px 5px;
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}
+
+/* editNote page */
+#editNote > div {
+    display: flex;
+    margin-bottom: 10px;
+}
+#editNote label {
+    min-width:140px;
+}
+#editNote input.err,
+#editNote textarea.err {
+    border-color: red;
+}
+#editNote span.err {
+    color: red;
+    display: none;
+}
+#editNote input[type=text] {
+    min-width: 10rem;
+    flex-grow: 1;
+}
+#editNote textarea {
+    min-width: 10rem;
+    flex-grow: 1;
+}
