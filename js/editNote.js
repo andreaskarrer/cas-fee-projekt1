@@ -79,13 +79,6 @@ $(function() {
     $("#importance").on("blur", function () {validateField("#importance")});
     $("#due").on("blur", function () {validateField("#due", /\d\d\d\d-\d?\d-\d?\d/)});
 
-/*
-    $("#title").on("blur", function () {validate()});
-    $("#desc").on("blur", function () {validate()});
-    $("#importance").on("blur", function () {validate()});
-    $("#due").on("blur", function () {validate()});
-*/
-
     $("#save").on("click", save);
     $("#cancel").on("click", cancel);
 });
