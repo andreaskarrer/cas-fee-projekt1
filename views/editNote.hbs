@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Note</title>
+    <link rel="stylesheet" href="css/notes.css">
+    <link rel="stylesheet" href="css/bw.css" id="cssstyle">
+    <script id="editNote-template" type="text/x-handlebars-template">
+        <div><label for="id">ID: </label><span id="id">{{id}}</span></div>
+        <div><label for="created">Created: </label><span id="created">{{created}}</span></div>
+        <div><label for="title">Title</label><input id="title" name="title" type="text" value="{{title}}" required></div>
+        <div><span class="err">required</span></div>
+        <div><label for="desc">Description</label><textarea id="desc" name="desc" rows="5">{{desc}}</textarea><span class="err">&nbsp;required</span></div>
+        <div><label for="importance">Importance</label><input id="importance" name="importance" type="text" value="{{importance}}"><span class="err">&nbsp;Enter a value 0..4</span></div>
+        <div><label for="due">Due date</label><input id="due" name="due" type="text" value="{{due}}"><span class="err">&nbsp;Enter a date in yyyy-mm-dd format</span></div>
+        <button id="save">Save</button>
+        <button id="cancel">Cancel</button>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="js/notesLocalStorage.js"></script>
+    <script src="js/editNote.js"></script>
+</head>
+<body>
+<div id="editNote">&nbsp;</div>
+</body>
+</html>

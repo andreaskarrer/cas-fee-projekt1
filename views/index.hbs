@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link rel="stylesheet" href="css/notes.css">
+    <link rel="stylesheet" href="css/bw.css" id="cssstyle">
+    <script id="notes-template" type="text/x-handlebars-template">
+        {{#each this}}
+            <li><div class="row">
+                <div class="due datefield">{{this.due}}</div>
+                <div class="title">{{this.title}}</div>
+                <div class="importance">{{this.importance}}</div>
+                <button onclick="editNote({{this.id}})">Edit</button>
+            </div>
+                <div class="row">
+                    <div class="datefield">
+                        <div class="created">{{this.created}}</div>
+                        <div><input type="checkbox"> Fixed</div>
+                    </div>
+                    <div class="desc">{{this.desc}}</div>
+
+                </div>
+            </li>
+        {{/each}}
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="js/notesLocalStorage.js"></script>
+    <script src="js/notes.js"></script>
+</head>
+<body>
+<div id="notes">
+    <nav>
+        <div class="navrow">
+            <button id="newnote">Create new Note</button>
+            <select id="selectstyle">
+                <option value="css/bw.css">Black-and-white Style</option>
+                <option value="css/pastel.css">Pastel color Style</option>
+                <option value="css/color.css">Vivid color Style</option>
+            </select>
+        </div>
+        <div class="navrow">
+            <div id="order">Order
+                <span><input type="radio" name="orderby" id="due" value="due"><label for="due">by finish date</label></span>
+                / <span><input type="radio" name="orderby" id="created" value="created" checked><label for="created">by creation date</label></span>
+                / <span><input type="radio" name="orderby" id="importance" value="importance"><label for="importance">by importance</label></span>
+            </div>
+            <span><input type="checkbox" name="showfinished" id="showfinished"><label for="showfinished">Show finished</label></span>
+        </div>
+    </nav>
+    <section>
+        <ul id="noteslist"></ul>
+    </section>
+</div>
+
+</body>
+</html>

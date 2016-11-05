@@ -11,6 +11,7 @@ var notesLocalStorage = (function() {
             "desc": "Blumen auf dem Balkon und hinter dem Haus giessen.",
             "importance": 1,
             "created": "2016-09-25",
+            "finished": false,
             "due": "2016-12-31"
         }, {
             "id": 2,
@@ -18,6 +19,7 @@ var notesLocalStorage = (function() {
             "desc": "Miete schon 2x gemahnt!",
             "importance": 4,
             "created": "2016-09-20",
+            "finished": true,
             "due": "2016-09-25"
         }, {
             "id": 3,
@@ -25,6 +27,7 @@ var notesLocalStorage = (function() {
             "desc": "Fristerstreckung bis 30. Nov",
             "importance": 5,
             "created": "2016-09-25",
+            "finished": false,
             "due": "2016-11-30"
         }, {
             "id": 4,
@@ -32,6 +35,7 @@ var notesLocalStorage = (function() {
             "desc": "Scharf beobachtete Züge, Jiří Menzel, Filmpodium.",
             "importance": 4,
             "created": "2016-09-25",
+            "finished": false,
             "due": "2016-10-07"
         }, {
 
@@ -40,6 +44,7 @@ var notesLocalStorage = (function() {
             "desc": "Klio Buchhandlung Katalog dump, > Newsletter",
             "importance": 2,
             "created": "2016-09-25",
+            "finished": false,
             "due": "2016-11-24"
         }];
 

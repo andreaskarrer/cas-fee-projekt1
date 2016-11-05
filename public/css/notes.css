@@ -38,7 +38,7 @@ nav input[type=checkbox]:checked ~ label {
     border-color: black;
 }
 
-/* the list of notes */
+/* the list of notesController */
 #noteslist {
     padding: 0;
     margin: 0;
