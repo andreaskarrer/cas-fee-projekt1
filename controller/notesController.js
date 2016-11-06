@@ -8,37 +8,47 @@ function Note(title, desc, due, importance, finished) {
     this.finished = finished ? true : false;
 }
 
-module.exports.showNotes = function(req, res, next) {
+module.exports.showIndex = function(req, res, next) {
     res.render("index");
 };
 
 module.exports.showEditNote = function(req, res, next) {
     notesService.getNote(req.params.id, function(err, note) {
-        res.render("editNote", note);
+        res.render("note", note);
     });
 };
 
-module.exports.getAllNotes = function(req, res, next) {
+// returns the list of notes as json
+module.exports.getNotesJSON = function(req, res, next) {
     notesService.getNotes(function(err, notes) {
+        console.log("runnig  getNotesJSON")
         res.json(notes);
+    });
+};
+
+module.exports.getNotes = function(req, res, next) {
+    notesService.getNotes(function(err, notes) {
+        //console.error("running getNotes: "+notes.length+" notes");
+        //console.error(JSON.stringify(notes, null, 4));
+        res.render("notesList", notes);
     });
 };
 
 module.exports.modifyNotesData = function(req, res, next) {
     notesService.getModifyNotes(req.body.sortBy, req.body.filterBy, function(err, notes) {
-        res.render("notesController", notes);
+        res.render("notesList", notes);
     });
 };
 
 
 module.exports.renderNotes = function(req, res, next) {
-    res.render("notesController", JSON.parse(req.body.data));
+    res.render("notesList", JSON.parse(req.body.data));
 };
 
 module.exports.addNote = function(req, res, next) {
     var note = new Note(req.body.title, req.body.desc, req.body.due,
                         req.body.importance, req.body.finished);
-    notesService.addNote(note);
+    notesService.putNote(note);
     res.redirect("/");
 };
 
@@ -49,7 +59,7 @@ module.exports.updateNote = function(req, res, next) {
         note.due = req.body.due;
         note.importance = req.body.importance;
         note.finished = req.body.finished ? true : false;
-        notesService.updateNote(note);
+        notesService.putNote(note);
     });
     res.redirect("/");
 };
