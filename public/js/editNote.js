@@ -2,14 +2,14 @@
     "use strict";
 
     //var createEditNote = Handlebars.compile($("#editNote-template").text());
-    var note;
-
-    function renderEditNote() {
-        var id = localStorage.getItem("editNote");
-        note = (id === "0") ? {"id": id} : notesLocalStorage.get(id);
-        console.log("editing id:" + id + ",  note:" + note.title + ", [" + note.desc + "]");
-        $("#editNote").html(createEditNote(note));
-    }
+    // var note;
+    //
+    // function renderEditNote() {
+    //     var id = localStorage.getItem("editNote");
+    //     note = (id === "0") ? {"id": id} : notesLocalStorage.get(id);
+    //     console.log("editing id:" + id + ",  note:" + note.title + ", [" + note.desc + "]");
+    //     $("#editNote").html(createEditNote(note));
+    // }
 
     function validateField(fld, pattern) {
         if (pattern === undefined) {
@@ -53,15 +53,11 @@
         } else {
             note.created = new Date().toJSON().slice(0, 10);
         }
-
-        //otesLocalStorage.put(note);
-        localStorage.removeItem("editNote");
-        window.location = "../index-old.html";
+        window.location = "/";
     }
 
     function cancel() {
-        localStorage.removeItem("editNote");
-        window.location = "../index-old.html";
+        window.location = "/";
     }
 
     function getState() {
@@ -73,20 +69,21 @@
         }
     }
 
-    // apply the css style saved in local stoirage
+    // apply the css style saved in local storage
     var state = getState();
-    if (state && state.cssstyle) {
-        $("#cssstyle").attr("href", state.cssstyle);
+    if (state && state.cssstyle && state.cssstyle !== "bw") {
+        var cssFile = $("#cssstyle").attr("href").replace(/\/\w+\.css$/, "/" + state.cssstyle + ".css");
+        $("#cssstyle").attr("href", cssFile);
+        $("#selectstyle option[value='" + state.cssstyle + "']").prop('selected', true);
     }
-
-    renderEditNote();
 
     $("#title").on("blur",      function () { validateField("#title") });
     $("#desc").on("blur",       function () { validateField("#desc") });
     $("#importance").on("blur", function () { validateField("#importance") });
     $("#due").on("blur",        function () { validateField("#due", /\d\d\d\d-\d?\d-\d?\d/) });
-
-    $("#save").on("click", save);
+    //$("#save").on("click", save);
     $("#cancel").on("click", cancel);
+
+    //renderEditNote();
 
 }(window.notesApp = window.notesApp || {}, jQuery));

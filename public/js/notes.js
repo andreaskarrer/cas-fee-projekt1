@@ -35,15 +35,22 @@
                 showFinished = (a) => (true);
             }
 
+            // get the notes from the db
+            $.get("/notes").done(function (data) {
+                console.log("notes.js: got "+data.length)+" bytes of data for /nodes";
+                $("#noteslist").html(data);
+            });
+
             // notesController list is first filtered and then sorted
-            $("#noteslist").html(createNotesList(notes.filter(showFinished).sort(getComparator(orderby))));
+            //$("#noteslist").html(createNotesList(notes.filter(showFinished).sort(getComparator(orderby))));
         }
 
         // get the css style file name from the dropdown, load the css file, store the selection
         function switchStyle() {
-            var stylefile = $('#selectstyle').val();
-            $("#cssstyle").attr("href", stylefile);
-            setState("cssstyle", stylefile);
+            var style = $('#selectstyle').val();
+            setState("cssstyle", style);
+            var cssFile = $("#cssstyle").attr("href").replace(/\/\w+\.css$/, "/" + style + ".css");
+            $("#cssstyle").attr("href", cssFile);
             return false;
         }
 
@@ -56,10 +63,10 @@
         // get and set the state of the orderby and select style option in local storage
         function getState() {
             var state = localStorage.getItem("state");
-            if (state != null && state.match(/^..*$/)) {
+            if (state != null && state.match(/^.*$/)) {
                 return JSON.parse(state);
             } else {
-                return {cssstyle: "css/bw.css", order: "due"};
+                return {cssstyle: "bw", order: "due"};
             }
         }
 
@@ -73,8 +80,9 @@
         // load state (css style, sort option) from local storage early
         var state = getState();
         if (state) {
-            if (state.cssstyle) {
-                $("#cssstyle").attr("href", state.cssstyle);
+            if (state.cssstyle && state.cssstyle !== "bw") {
+                var cssFile = $("#cssstyle").attr("href").replace(/\/\w+\.css$/, "/" + state.cssstyle + ".css");
+                $("#cssstyle").attr("href", cssFile);
                 $("#selectstyle option[value='" + state.cssstyle + "']").prop('selected', true);
             }
             if (state.order) {
@@ -82,15 +90,15 @@
             }
         }
 
-        // load notes from db
-        notes = notesLocalStorage.getAll();
-        renderNotesList();
-
-        // click events
+        // clickables in nav header
+        $("#newnote").on("click", editNote);
+        $("#selectstyle").on("click", switchStyle);
         $("#order").on("click", renderNotesList);
         $("#showfinished").on("click", renderNotesList);
-        $("#selectstyle").on("click", switchStyle);
-        $("#newnote").on("click", editNote);
+
+        // load notes from db
+        //notes = notesLocalStorage.getAll();
+        renderNotesList();
     });
 
 }(window.notesApp = window.notesApp || {}, jQuery));
