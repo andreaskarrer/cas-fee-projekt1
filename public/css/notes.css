@@ -13,7 +13,7 @@ body {
 section, nav, #editNote {
     display: block;
     margin-bottom: .75rem;
-    padding: .75rem;
+    padding: .75rem .75rem 0.5rem .75rem;
     border-radius: .25rem;
     width: 100%;
 }
@@ -47,15 +47,15 @@ nav input[type=checkbox]:checked ~ label {
 
 #noteslist li {
     position: relative;
-    margin-bottom: .75rem;
-    padding: .75rem;
+    margin-bottom: .5rem;
+    padding: .5rem .5rem 0 .5rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: .25rem;
 }
 
 #noteslist li div {
-    padding-right: .75rem;
+    padding-right: .5rem;
 }
 
 #noteslist .row {
@@ -88,7 +88,7 @@ nav input[type=checkbox]:checked ~ label {
 }
 
 /* editNote page */
-#editNote > div {
+#editNote > form > div {
     display: flex;
     margin-bottom: 10px;
 }
