@@ -5,28 +5,10 @@
     <title>Notes</title>
     <link rel="stylesheet" href="css/notes.css">
     <link rel="stylesheet" href="css/bw.css" id="cssstyle">
-    <script id="notes-template" type="text/x-handlebars-template">
-        {{#each this}}
-            <li><div class="row">
-                <div class="due datefield">{{this.due}}</div>
-                <div class="title">{{this.title}}</div>
-                <div class="importance">{{this.importance}}</div>
-                <button onclick="editNote({{this.id}})">Edit</button>
-            </div>
-                <div class="row">
-                    <div class="datefield">
-                        <div class="created">{{this.created}}</div>
-                        <div><input type="checkbox"> Fixed</div>
-                    </div>
-                    <div class="desc">{{this.desc}}</div>
-
-                </div>
-            </li>
-        {{/each}}
-    </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="js/notesLocalStorage.js"></script>
     <script src="js/notes.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 <div id="notes">

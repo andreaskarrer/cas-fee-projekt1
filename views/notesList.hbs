@@ -1,0 +1,19 @@
+{{#each this}}
+    {{#each this}}
+        <li><div class="row">
+            <div class="due datefield">{{this.due}}</div>
+            <div class="title">{{this.title}}</div>
+            <div class="importance">{{this.importance}}</div>
+            <button onclick="editNote({{this.id}})">Edit</button>
+        </div>
+            <div class="row">
+                <div class="datefield">
+                    <div class="created">{{this.created}}</div>
+                    <div><input type="checkbox"> Fixed</div>
+                </div>
+                <div class="desc">{{this.desc}}</div>
+
+            </div>
+        </li>
+    {{/each}}
+{{/each}}
