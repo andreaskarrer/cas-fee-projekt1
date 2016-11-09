@@ -3,10 +3,6 @@
 
     $(function () {
 
-        var notes = [];
-
-        //var createNotesList = Handlebars.compile($("#notesController-template").text());
-
         function getComparator(orderby) {
             var comparator;
             switch (orderby) {
@@ -35,14 +31,10 @@
                 showFinished = (a) => (true);
             }
 
-            // get the notes from the db
+            // get the notes list
             $.get("/notes").done(function (data) {
-                console.log("notes.js: got "+data.length)+" bytes of data for /nodes";
                 $("#noteslist").html(data);
             });
-
-            // notesController list is first filtered and then sorted
-            //$("#noteslist").html(createNotesList(notes.filter(showFinished).sort(getComparator(orderby))));
         }
 
         // get the css style file name from the dropdown, load the css file, store the selection
@@ -54,10 +46,9 @@
             return false;
         }
 
-        // store the id of the note to be edited in local storage and switch to the edit page
-        function editNote(id) {
-            localStorage.setItem("editNote", "" + id);
-            window.location = "../editNote-old.html";
+        // create new note
+        function newNote() {
+            window.location = "/note";
         }
 
         // get and set the state of the orderby and select style option in local storage
@@ -91,13 +82,11 @@
         }
 
         // clickables in nav header
-        $("#newnote").on("click", editNote);
+        $("#newnote").on("click", newNote);
         $("#selectstyle").on("click", switchStyle);
         $("#order").on("click", renderNotesList);
         $("#showfinished").on("click", renderNotesList);
 
-        // load notes from db
-        //notes = notesLocalStorage.getAll();
         renderNotesList();
     });
 

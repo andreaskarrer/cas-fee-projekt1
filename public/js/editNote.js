@@ -1,16 +1,6 @@
 ;(function (notesApp, $) {
     "use strict";
 
-    //var createEditNote = Handlebars.compile($("#editNote-template").text());
-    // var note;
-    //
-    // function renderEditNote() {
-    //     var id = localStorage.getItem("editNote");
-    //     note = (id === "0") ? {"id": id} : notesLocalStorage.get(id);
-    //     console.log("editing id:" + id + ",  note:" + note.title + ", [" + note.desc + "]");
-    //     $("#editNote").html(createEditNote(note));
-    // }
-
     function validateField(fld, pattern) {
         if (pattern === undefined) {
             pattern = /\S/;
@@ -31,7 +21,7 @@
         var validationErrors = 0;
         validationErrors += validateField("#title");
         validationErrors += validateField("#desc");
-        validationErrors += validateField("#importance", /[0-4]/);
+        validationErrors += validateField("#importance", /[1-5]/);
         validationErrors += validateField("#due", /\d\d\d\d-\d?\d-\d?\d/);
         if (validationErrors > 0) {
             return;
@@ -57,7 +47,10 @@
     }
 
     function cancel() {
-        window.location = "/";
+        console.log("cancel handler");
+        // need to put sth in required fields
+        $("#title").data("dummy")
+        window.location.replace("/");
     }
 
     function getState() {
@@ -81,9 +74,8 @@
     $("#desc").on("blur",       function () { validateField("#desc") });
     $("#importance").on("blur", function () { validateField("#importance") });
     $("#due").on("blur",        function () { validateField("#due", /\d\d\d\d-\d?\d-\d?\d/) });
-    //$("#save").on("click", save);
-    $("#cancel").on("click", cancel);
 
-    //renderEditNote();
+    $("#cancel").on("click", cancel);
+    console.log("ev handlers instaled");
 
 }(window.notesApp = window.notesApp || {}, jQuery));
