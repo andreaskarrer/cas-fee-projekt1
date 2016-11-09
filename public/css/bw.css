@@ -6,6 +6,8 @@ section, nav, #editNote {
 
 #noteslist .desc,
 #editNote input[type=text],
+#editNote input[type=number],
+#editNote input[type=date],
 #editNote textarea{
     background-color: #fff;
 }
