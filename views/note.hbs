@@ -10,17 +10,17 @@
     -->
     <script src="../lib/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="../js/notesLocalStorage.js"></script>
-    <script src="../js/editNote.js"></script>
+    <script src="../js/note.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 <div id="editNote">
     <form id="noteForm" action='/note/{{_id}}' method='post'>
         {{#if _id}}
-            <h3>Edit Note</h3>
+            <h3 class=h3">Edit Note</h3>
             <div><label for="id">ID: </label><span id="id">{{_id}}</span></div>
         {{else}}
-            <h3>New Note</h3>
+            <h3 class="h3">New Note</h3>
         {{/if}}
         {{#if created}}
             <div><label for="created">Created</label><span id="created">{{created}}</span></div>
@@ -30,7 +30,7 @@
         <div><label for="desc">Description</label><textarea id="desc" name="desc" rows="5">{{desc}}</textarea><span class="err">&nbsp;required</span></div>
         <div><label for="importance">Importance</label><input id="importance" name="importance" type="number" min="1" max="5" value="{{importance}}"><span class="err">&nbsp;Enter a value 1..5</span></div>
         <div><label for="due">Due date</label><input id="due" name="due" type="date" min="2016-01-01" max="2034-12-31" value="{{due}}"><span class="err">&nbsp;Enter a date in yyyy-mm-dd format</span></div>
-        <div><label for="finished">Finished</label><input id="finished" name="finished" type="checkbox" {{#if finished}}checked{{/if}}></div>
+        <div><label for="finished">Done</label><input id="finished" name="finished" type="checkbox" {{#if finished}}checked{{/if}}></div>
         <input id="save" type="submit" value="Save">
         <input id="cancel" type="reset" value="Cancel">
     </form>

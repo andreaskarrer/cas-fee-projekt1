@@ -10,7 +10,7 @@
         <div class="row">
             <div class="datefield">
                 <div class="created">{{created}}</div>
-                <div><input type="checkbox"> Fixed</div>
+                <div><input type="checkbox" class="done" {{#if finished}}checked{{/if}}> Done</div>
             </div>
             <div class="desc">{{desc}}</div>
         </div>

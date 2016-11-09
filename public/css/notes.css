@@ -5,6 +5,10 @@ body {
     line-height: 1.5;
 }
 
+.h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
 #notes {
     display: block;
     margin: .75rem;
@@ -73,7 +77,7 @@ nav input[type=checkbox]:checked ~ label {
 }
 
 #noteslist .importance {
-    width: 10rem;
+    width: 4rem;
     margin-right: 10px;
 }
 

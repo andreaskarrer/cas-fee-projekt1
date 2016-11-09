@@ -17,8 +17,10 @@
 <div id="notes">
     <nav>
         <div class="navrow">
-            <button id="newnote">Create new Note</button>
-            <select id="selectstyle">
+            <div class="h3">Notes</div>
+        </div>
+        <div class="navrow">
+            <button id="newnote">Create new Note</button>             <select id="selectstyle">
                 <option value="bw">Black-and-white Style</option>
                 <option value="pastel">Pastel color Style</option>
                 <option value="color">Vivid color Style</option>
@@ -30,7 +32,7 @@
                 / <span><input type="radio" name="orderby" id="created" value="created" checked><label for="created">by creation date</label></span>
                 / <span><input type="radio" name="orderby" id="importance" value="importance"><label for="importance">by importance</label></span>
             </div>
-            <span><input type="checkbox" name="showfinished" id="showfinished"><label for="showfinished">Show finished</label></span>
+            <span><input type="checkbox" name="showfinished" id="showfinished" checked><label for="showfinished">Show finished</label></span>
         </div>
     </nav>
     <section>

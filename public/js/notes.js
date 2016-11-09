@@ -23,18 +23,28 @@
             // make a comparator function according to the orderby radio buttons
             var orderby = $("input:radio[name ='orderby']:checked").val();
             setState("order", orderby);
+            console.log("orderby:"+orderby);
 
-            // make a filter function according to the "Show finished" checkbox
-            var today = new Date().toJSON().slice(0, 10); // today's date in format yyyy-mm-dd
-            var showFinished = (a) => (a.due > today);
-            if ($("#showfinished").is(':checked')) {
-                showFinished = (a) => (true);
-            }
 
             // get the notes list
             $.get("/notes").done(function (data) {
                 $("#noteslist").html(data);
             });
+        }
+
+        // hide notes that are done. This is done locally, we always load all notes.
+        function showFinished() {
+            // make a filter function according to the "Show finished" checkbox
+            var today = new Date().toJSON().slice(0, 10); // today's date in format yyyy-mm-dd
+            var showFinished = (a) => (a.due > today);
+            if ($("#showfinished").is(':checked')) {
+                $("input.done:checked").parent().parent().parent().parent().show("fast");
+                console.log("hide");
+                showFinished = (a) => (true);
+            } else {
+                $("input.done:checked").parent().parent().parent().parent().hide("fast");
+                console.log("show");
+            }
         }
 
         // get the css style file name from the dropdown, load the css file, store the selection
@@ -85,7 +95,7 @@
         $("#newnote").on("click", newNote);
         $("#selectstyle").on("click", switchStyle);
         $("#order").on("click", renderNotesList);
-        $("#showfinished").on("click", renderNotesList);
+        $("#showfinished").on("click", showFinished);
 
         renderNotesList();
     });
