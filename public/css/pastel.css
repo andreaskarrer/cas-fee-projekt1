@@ -2,12 +2,12 @@ body {
     background-color: #e0e8ff;
 }
 
-section, nav, #editNote {
+section, nav {
     background-color: #acf;
     border: 2px solid #8af;
 }
 
-#noteslist li {
+#noteslist li, #editNote {
     background-color: #efe;
 }
 
@@ -21,4 +21,9 @@ section, nav, #editNote {
 
 
 nav label { border-bottom: 3px solid #8af }
-nav label:hover { background-color: #fee}
+
+nav label:hover,
+button,
+#selectstyle,
+input#save,
+input#cancel { background-color: #cdf}

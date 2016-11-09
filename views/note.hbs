@@ -14,6 +14,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
+<section>
 <div id="editNote">
     <form id="noteForm" action='/note/{{_id}}' method='post'>
         {{#if _id}}
@@ -35,6 +36,7 @@
         <input id="cancel" type="reset" value="Cancel">
     </form>
 </div>
+</section>
 </body>
 </html>
 <!--

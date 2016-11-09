@@ -99,6 +99,10 @@ nav input[type=checkbox]:checked ~ label {
 .importance .on { color:red }
 
 /* editNote page */
+#editNote {
+    width: 96%;
+    margin-bottom: 0.1rem
+}
 #editNote > form > div {
     display: flex;
     margin-bottom: 10px;
@@ -114,11 +118,11 @@ nav input[type=checkbox]:checked ~ label {
     color: red;
     display: none;
 }
-#editNote input[type=text] {
-    min-width: 10rem;
-    flex-grow: 1;
-}
+#editNote input[type=text],
+#editNote input[type=number],
+#editNote input[type=date],
 #editNote textarea {
     min-width: 10rem;
     flex-grow: 1;
+    padding: 0 5px;
 }
