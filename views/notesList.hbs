@@ -4,7 +4,7 @@
         <div class="row">
             <div class="due datefield">{{due}}</div>
             <div class="title">{{title}}</div>
-            <div class="importance">{{importance}}⚡</div>
+            {{#fivesymbols importance}}⚡{{/fivesymbols}}
             <a href="/note/{{ _id }}"><button>Edit</button></a>
         </div>
         <div class="row">

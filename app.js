@@ -45,4 +45,16 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+
+
+// show 5 symbols in the block, n of which marked "on"
+hbs.registerHelper('fivesymbols', function (n, block) {
+    return '<div class="importance"><span class="on">'
+        +  block.fn(this).repeat(n)    // repeat() is ES6
+        +  '</span>'
+        +  block.fn(this).repeat(5-n)
+        +  "</div>\n";
+});
+
+
 module.exports = app;
