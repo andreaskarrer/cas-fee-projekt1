@@ -50,11 +50,28 @@ app.use(function (err, req, res, next) {
 
 // helper to show 5 symbols in the block, n of which marked "on"
 hbs.registerHelper('fivesymbols', function (n, block) {
-    return '<div class="importance"><span class="on">'
+    return '<span class="importance"><span class="redalert">'
         +  block.fn(this).repeat(n)    // repeat() is ES6
         +  '</span>'
         +  block.fn(this).repeat(5-n)
-        +  "</div>\n";
+        +  "</span>\n";
+});
+
+// helper to format a date
+hbs.registerHelper('nicedate', function (block) {
+    var yyyymmdd = block.fn(this);
+    console.log("ymd:"+yyyymmdd);
+    var theDate = new Date(yyyymmdd+"T12:00:00");
+    theDate = Math.trunc(theDate.getTime()/24/60/60/1000); // days since 1070-01-01
+    var today = new Date().toJSON().slice(0, 10);          // yyyy-mm-dd
+    today = new Date(today+"T12:00:00");
+    today = Math.trunc(today.getTime()/24/60/60/1000);
+    switch (today-theDate) {
+        case -1: return "tomorrow"; break;
+        case 0: return '<span class="redalert">today</span>'; break;
+        case 1: return "yesterday"; break;
+        default: return yyyymmdd;
+    }
 });
 
 

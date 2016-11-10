@@ -42,7 +42,7 @@ nav input[type=checkbox]:checked ~ label {
     border-color: black;
 }
 
-/* the list of notesController */
+/* the list of notes */
 #noteslist {
     padding: 0;
     margin: 0;
@@ -59,7 +59,7 @@ nav input[type=checkbox]:checked ~ label {
 }
 
 #noteslist li div {
-    padding-right: .5rem;
+    text-align: right;
 }
 
 #noteslist .row {
@@ -67,18 +67,20 @@ nav input[type=checkbox]:checked ~ label {
     margin-bottom: 10px;
 }
 
-#noteslist .datefield {
-    min-width: 6rem;
+#noteslist .col1 {
+    min-width: 10rem;
+    padding-right: 1rem;
+}
+#noteslist .lbl {
+    font-size: 0.8rem;
+    width: 4rem;
 }
 
 #noteslist .title {
+    padding-left: 5px;
     font-weight: bold;
+    text-align: left;
     flex-grow: 1;
-}
-
-#noteslist .importance {
-    width: 4rem;
-    margin-right: 10px;
 }
 
 #noteslist .desc {
@@ -91,12 +93,12 @@ nav input[type=checkbox]:checked ~ label {
     word-wrap:break-word;
 }
 
-.importance {
+#noteslist  .importance {
     font-weight: bold;
     font-size: 1.5rem;
     color: #ccc;
 }
-.importance .on { color:red }
+#noteslist .redalert { color:red }
 
 /* editNote page */
 #editNote {
