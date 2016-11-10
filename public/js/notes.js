@@ -30,14 +30,15 @@
             });
         }
 
-        // hide notes that are done. This is done locally, we always load all notes.
+        // hide notes that are finished.
+        // This is done locally, we always load all notes.
         function showFinished() {
-            // show/hide notes if their "done" checkbox is checked
+            // there must be a simpler way than four .parent()
+            var finishedNotes = $("input.done:checked").parent().parent().parent().parent();
             if ($("#showfinished").is(':checked')) {
-                // there must be some simpler way
-                $("input.done:checked").parent().parent().parent().parent().show("fast");
+                finishedNotes.show("fast");
             } else {
-                $("input.done:checked").parent().parent().parent().parent().hide("fast");
+                finishedNotes.hide("fast");
             }
         }
 
@@ -85,11 +86,12 @@
             }
         }
 
-        // clickables in nav header
+        // clickables in nav header.
+        // With radioi, select, checkbox, "change" is ok, otherewise we get two events
         $("#newnote").on("click", newNote);
-        $("#selectstyle").on("click", switchStyle);
-        $("#order").on("click", renderNotesList);
-        $("#showfinished").on("click", showFinished);
+        $("#selectstyle").on("change", switchStyle);
+        $("#order").on("change", renderNotesList);
+        $("#showfinished").on("change", showFinished);
 
         renderNotesList();
     });

@@ -56,22 +56,19 @@
         $("form").submit();
     }
 
-    function getState() {
+    function setStyle() {
         var state = localStorage.getItem("state");
         if (state != null && state.match(/^..*$/)) {
-            return JSON.parse(state);
-        } else {
-            return {cssstyle: "css/bw.css", order: "due"};
+            state = JSON.parse(state);
+            if (state && state.cssstyle && state.cssstyle !== "bw") {
+                var cssFile = $("#cssstyle").attr("href").replace(/\/\w+\.css$/, "/" + state.cssstyle + ".css");
+                $("#cssstyle").attr("href", cssFile);
+            }
         }
     }
 
     // apply the css style saved in local storage
-    var state = getState();
-    if (state && state.cssstyle && state.cssstyle !== "bw") {
-        var cssFile = $("#cssstyle").attr("href").replace(/\/\w+\.css$/, "/" + state.cssstyle + ".css");
-        $("#cssstyle").attr("href", cssFile);
-        $("#selectstyle option[value='" + state.cssstyle + "']").prop('selected', true);
-    }
+    setStyle();
 
     $("#title").on("blur",      function () { validateField("#title") });
     $("#desc").on("blur",       function () { validateField("#desc") });
