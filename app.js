@@ -60,8 +60,7 @@ hbs.registerHelper('fivesymbols', function (n, block) {
 // helper to format a date
 hbs.registerHelper('nicedate', function (block) {
     var yyyymmdd = block.fn(this);
-    console.log("ymd:"+yyyymmdd);
-    var theDate = new Date(yyyymmdd+"T12:00:00");
+    var theDate = new Date(yyyymmdd+"T12:00:00");          // trunc(0 and 12:00:00 so this will work als when dst changes
     theDate = Math.trunc(theDate.getTime()/24/60/60/1000); // days since 1070-01-01
     var today = new Date().toJSON().slice(0, 10);          // yyyy-mm-dd
     today = new Date(today+"T12:00:00");
