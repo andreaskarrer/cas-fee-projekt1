@@ -1,6 +1,7 @@
 "use strict";
 
 var Datastore = require('nedb');
+
 // hm lets find the db no matter if we started form the app- or from the bin directory
 var fs = require("fs");
 var dbfile = "db/notes.nedb";
@@ -9,71 +10,37 @@ if (! fs.existsSync(dbfile)) {
 }
 var db = new Datastore({filename: '../db/notes.nedb', autoload: true});
 
-
-function publicGetAllNotes(callback) {
-    db.find({}).sort({due: 1}).exec(function (err, docs) {
-        //console.error("db: got "+docs.length+" notes");
+// get a list of notes ordered by "orderby -1"
+function publicGetNotes(orderby, callback) {
+    console.log("running publicGetAllNotes: "+orderby);
+    var sorter = {};
+    sorter[orderby] = -1;
+    db.find({}).sort(sorter).exec(function (err, docs) {
         callback(err, docs);
     });
 }
 
-// get a note by  id
+// get a note by id
 function publicGetNote(id, callback) {
     db.findOne({ _id: id }, function (err, doc) {
         callback(err, doc);
     });
 }
 
-// put a note. If the note contains an id, update, else insert
+// put a note: insert/update.
+// If the note contains an id, update; else add the "created" date and insert.
 function publicPutNote(note) {
     if (typeof note._id == "undefined") {
-        note["created"] = new Date().toJSON().slice(0, 10);
+        note["created"] = new Date().toJSON().slice(0, 10); // yyyy-mm-dd
         db.insert(note);
     } else {
         db.update({_id: note._id}, note, {});
     }
-    //db.persistence.compactDatafile();
 }
 
-function publicAddNote(note) {
-    note["created"] = new Date().toJSON().slice(0, 10);
-    db.insert(note);
-}
-
-function publicUpdateNote(note) {
-    publicGetNote(note._id, function (err, doc) {
-        db.update(doc, note, {});
-    });
-
-}
-
-function publicGetModifyNotes(sortBy, filterBy, callback) {
-    filterBy = JSON.parse(filterBy);
-    sortBy = JSON.parse(sortBy);
-    if (sortBy && filterBy) {
-        db.find(filterBy).sort(sortBy).exec(function (err, docs) {
-            callback(err, docs);
-        });
-    } else if(filterBy) {
-        db.find(filterBy, function (err, docs) {
-            callback(err, docs);
-        });
-    } else if(sortBy) {
-        db.find({}).sort(sortBy).exec(function (err, docs) {
-            callback(err, docs);
-        });
-    } else {
-        db.find({}, function (err, docs) {
-            callback(err, docs);
-        });
-    }
-}
 
 module.exports = {
-    getNotes: publicGetAllNotes,
+    getNotes: publicGetNotes,
     getNote: publicGetNote,
     putNote: publicPutNote,
-    //getModifyNotes: publicGetModifyNotes,
-    //add: publicAddNote,
-    //putold: publicUpdateNote,
 };

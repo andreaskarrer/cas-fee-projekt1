@@ -12,7 +12,7 @@ module.exports.showIndex = function(req, res, next) {
     res.render("index");
 };
 
-module.exports.showEditNote = function(req, res, next) {
+module.exports.showNote = function(req, res, next) {
     notesService.getNote(req.params.id, function(err, note) {
         res.render("note", note);
     });
@@ -21,17 +21,15 @@ module.exports.showEditNote = function(req, res, next) {
 // returns the list of notes as json
 module.exports.getNotesJSON = function(req, res, next) {
     notesService.getNotes(function(err, notes) {
-        console.log("runnig  getNotesJSON")
         res.json(notes);
     });
 };
 
 module.exports.getNotes = function(req, res, next) {
-    notesService.getNotes(function(err, notes) {
-        //console.error("running getNotes: "+notes.length+" notes");
-        //console.error(JSON.stringify(notes, null, 4));
+    notesService.getNotes(req.query.orderby, function(err, notes) {
         res.render("notesList", notes);
     });
+
 };
 
 module.exports.modifyNotesData = function(req, res, next) {

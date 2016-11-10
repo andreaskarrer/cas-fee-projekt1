@@ -34,6 +34,7 @@ app.use(function (req, res, next) {
     next(err);
 });
 
+
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
@@ -47,7 +48,7 @@ app.use(function (err, req, res, next) {
 
 
 
-// show 5 symbols in the block, n of which marked "on"
+// helper to show 5 symbols in the block, n of which marked "on"
 hbs.registerHelper('fivesymbols', function (n, block) {
     return '<div class="importance"><span class="on">'
         +  block.fn(this).repeat(n)    // repeat() is ES6

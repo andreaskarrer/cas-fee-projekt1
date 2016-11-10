@@ -15,33 +15,27 @@
 </head>
 <body>
 <section>
-<div id="editNote">
-    <form id="noteForm" action='/note/{{_id}}' method='post'>
-        {{#if _id}}
-            <h3 class=h3">Edit Note</h3>
-            <div><label for="id">ID: </label><span id="id">{{_id}}</span></div>
-        {{else}}
-            <h3 class="h3">New Note</h3>
-        {{/if}}
-        {{#if created}}
-            <div><label for="created">Created</label><span id="created">{{created}}</span></div>
-        {{/if}}
-        <div><label for="title">Title</label><input id="title" name="title" type="text" value="{{title}}" required></div>
-        <div><span class="err">required</span></div>
-        <div><label for="desc">Description</label><textarea id="desc" name="desc" rows="5">{{desc}}</textarea><span class="err">&nbsp;required</span></div>
-        <div><label for="importance">Importance</label><input id="importance" name="importance" type="number" min="1" max="5" value="{{importance}}"><span class="err">&nbsp;Enter a value 1..5</span></div>
-        <div><label for="due">Due date</label><input id="due" name="due" type="date" min="2016-01-01" max="2034-12-31" value="{{due}}"><span class="err">&nbsp;Enter a date in yyyy-mm-dd format</span></div>
-        <div><label for="finished">Done</label><input id="finished" name="finished" type="checkbox" {{#if finished}}checked{{/if}}></div>
-        <input id="save" type="submit" value="Save">
-        <input id="cancel" type="reset" value="Cancel">
-    </form>
-</div>
+    <div id="editNote">
+        <form id="noteForm" action='/note/{{_id}}' method='post'>
+            {{#if _id}}
+                <h3 class=h3">Edit Note</h3>
+                <div><label for="id">ID: </label><span id="id">{{_id}}</span></div>
+            {{else}}
+                <h3 class="h3">New Note</h3>
+            {{/if}}
+            {{#if created}}
+                <div><label for="created">Created</label><span id="created">{{created}}</span></div>
+            {{/if}}
+            <div><label for="title">Title</label><input id="title" name="title" type="text" value="{{title}}" required></div>
+            <div><span class="err">required</span></div>
+            <div><label for="desc">Description</label><textarea id="desc" name="desc" rows="5">{{desc}}</textarea><span class="err">&nbsp;required</span></div>
+            <div><label for="importance">Importance</label><input id="importance" name="importance" type="number" min="1" max="5" value="{{importance}}"><span class="err">&nbsp;Enter a value 1..5</span></div>
+            <div><label for="due">Due date</label><input id="due" name="due" type="date" min="2016-01-01" max="2034-12-31" value="{{due}}"><span class="err">&nbsp;Enter a date in yyyy-mm-dd format</span></div>
+            <div><label for="finished">Done</label><input id="finished" name="finished" type="checkbox" {{#if finished}}checked{{/if}}></div>
+            <input id="save" type="submit" value="Save">
+            <input id="cancel" type="reset" value="Cancel">
+        </form>
+    </div>
 </section>
 </body>
 </html>
-<!--
-<button id="cancel">Cancel</button>
-        <div><label for="importance">Importance</label><input id="importance" name="importance" type="text" value="{{importance}}"><span class="err">&nbsp;Enter a value 0..4</span></div>
-        <div><label for="due">Due date</label><input id="due" name="due" type="text" value="{{due}}"><span class="err">&nbsp;Enter a date in yyyy-mm-dd format</span></div>
-
--->
