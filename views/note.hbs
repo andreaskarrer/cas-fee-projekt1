@@ -32,9 +32,9 @@
             <div><label for="importance">Importance</label><input id="importance" name="importance" type="number" min="1" max="5" value="{{importance}}"><span class="err">&nbsp;Enter a value 1..5</span></div>
             <div><label for="due">Due date</label><input id="due" name="due" type="date" min="2016-01-01" max="2034-12-31" value="{{due}}"><span class="err">&nbsp;Enter a date in yyyy-mm-dd format</span></div>
             <div><label for="finished">Done</label><input id="finished" name="finished" type="checkbox" {{#if finished}}checked{{/if}}></div>
-            <input id="save" type="submit" value="Save">
-            <input id="cancel" type="reset" value="Cancel">
+            <button id="save" type="submit">Save</button>
         </form>
+        <a href="/"><button id="cancel" type="button">Cancel</button></a>
     </div>
 </section>
 </body>
