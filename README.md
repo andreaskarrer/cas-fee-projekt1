@@ -1,11 +1,14 @@
-# cas-fee-projekt1
-CAS FEE Projekt 1
 
-Andi Karrer
+### CAS FEE Projekt 1
 
-Im folder cas-fee-projekt1:
+**Andi Karrer**
 
- npm install
- npm start
+Im Folder cas-fee-projekt1:
+
+```
+    npm install
  
-Die App laeuft dann auf http://localhost:3333/
+    npm start
+```
+ 
+Die App läuft dann auf http://localhost:3333/
