@@ -20,30 +20,24 @@
         }
 
         function renderNotesList() {
-            // make a comparator function according to the orderby radio buttons
+            // get the value of the orderby radio buttons (due/created/importance)
             var orderby = $("input:radio[name ='orderby']:checked").val();
             setState("order", orderby);
-            console.log("orderby:"+orderby);
-
 
             // get the notes list
-            $.get("/notes").done(function (data) {
+            $.get("/notes", {orderby: orderby}).done(function (data) {
                 $("#noteslist").html(data);
             });
         }
 
         // hide notes that are done. This is done locally, we always load all notes.
         function showFinished() {
-            // make a filter function according to the "Show finished" checkbox
-            var today = new Date().toJSON().slice(0, 10); // today's date in format yyyy-mm-dd
-            var showFinished = (a) => (a.due > today);
+            // show/hide notes if their "done" checkbox is checked
             if ($("#showfinished").is(':checked')) {
+                // there must be some simpler way
                 $("input.done:checked").parent().parent().parent().parent().show("fast");
-                console.log("hide");
-                showFinished = (a) => (true);
             } else {
                 $("input.done:checked").parent().parent().parent().parent().hide("fast");
-                console.log("show");
             }
         }
 

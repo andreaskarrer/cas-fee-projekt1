@@ -17,7 +17,7 @@
         }
     }
 
-    function save() {
+    function validateAndsave() {
         var validationErrors = 0;
         validationErrors += validateField("#title");
         validationErrors += validateField("#desc");
@@ -26,7 +26,6 @@
         if (validationErrors > 0) {
             return;
         }
-
 
         var note = {
             "id": $("#id").text(),
@@ -48,9 +47,13 @@
 
     function cancel() {
         console.log("cancel handler");
-        // need to put sth in required fields
-        $("#title").data("dummy")
         window.location.replace("/");
+        return false;
+    }
+
+    function save(){
+        console.log("save handler");
+        $("form").submit();
     }
 
     function getState() {
@@ -75,7 +78,7 @@
     $("#importance").on("blur", function () { validateField("#importance") });
     $("#due").on("blur",        function () { validateField("#due", /\d\d\d\d-\d?\d-\d?\d/) });
 
+    $("#save").on("click", save);
     $("#cancel").on("click", cancel);
-    console.log("ev handlers instaled");
 
 }(window.notesApp = window.notesApp || {}, jQuery));

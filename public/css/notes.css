@@ -108,7 +108,7 @@ nav input[type=checkbox]:checked ~ label {
     margin-bottom: 10px;
 }
 #editNote label {
-    min-width:140px;
+    min-width:8rem;
 }
 #editNote input.err,
 #editNote textarea.err {
@@ -119,10 +119,12 @@ nav input[type=checkbox]:checked ~ label {
     display: none;
 }
 #editNote input[type=text],
-#editNote input[type=number],
-#editNote input[type=date],
 #editNote textarea {
     min-width: 10rem;
     flex-grow: 1;
+    padding: 0 5px;
+}
+#editNote input[type=number],
+#editNote input[type=date]{
     padding: 0 5px;
 }
